@@ -4,7 +4,7 @@ If you hover on an anchor link, what do you see?
 
 A link at the bottom right or left of the webpage right?
 
-That's what I am, a Status Bar Tooltip!!!!
+That's what I am, a Status Bar Tooltip...
 
 ## A Message for Occasional "Anchor Tag Haters" Out There
 
@@ -49,5 +49,7 @@ Now, if you're brave enough to semantically make errors with your html file othe
 ```
 
 You can't either put a href attribute to list tag, that's what anchor tag job is...
+
+This was possible to make with the help of JavaScript DOM Manipulation...
 
 Try to look at the code or the live preview for you to have an idea
