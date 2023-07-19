@@ -27,7 +27,27 @@ Ever encountered this?
 </ul>
 ```
 
-The problem here is that, only the anchor tag text is being functional and not the whole <li> tag
+The problem here is that, only the anchor tag text is being functional and not the whole list tag
 
+Now, if you're brave enough to semantically make errors with your html file others do this
+```
+<ul>
 
+  <a>
+    <li>Link 1</li>
+  </a>
 
+  <a>
+    <li>Link 1</li>
+  </a>
+
+  <a>
+    <li>Link 1</li>
+  </a>
+
+</ul>
+```
+
+You can't either put a href attribute to list tag, that's what anchor tag job is...
+
+Try to look at the code or the live preview for you to have an idea
