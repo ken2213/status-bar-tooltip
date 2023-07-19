@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Bar Tooltip</title>
+</head>
+<body>
+    <style>
+        ul {
+          list-style-type: none;
+        }
+        ul li {
+          cursor: pointer;
+          color: white;
+          display: flex;
+          justify-content: center;
+          text-decoration: none;
+          padding: 20px;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* Custom Tooltip CSS */
+        .custom-tooltip {
+            position: fixed;
+            bottom: 0; /* Adjust the distance from the bottom as needed */
+            left: 0%; /* Center the tooltip horizontally */
+            transform: translateX(0%);
+            background-color: #f1f1f1;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: none;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        ul li:nth-child(1) {
+            background-color: red;
+        }
+
+        ul li:nth-child(2) {
+            background-color: green;
+        }
+        ul li:nth-child(3) {
+            background-color: blue;
+        }
+
+        .fade-in {
+	        -webkit-animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        @-webkit-keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+            }
+            @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+    </style>
+
+    <ul id="myList"></ul>
+    <div class="custom-tooltip" id="tooltip"></div>
+
+    <script>
+        // Assuming you have the data in JSON format like this:
+        const itemsData = [
+          { text: 'Item 1', url: 'https://linkedin.com' },
+          { text: 'Item 2', url: 'https://youtube.com' },
+          { text: 'Item 3', url: 'https://www.iana.org/help/example-domains' }
+        ];
+      
+        const listContainer = document.getElementById('myList');
+        const tooltip = document.getElementById('tooltip');
+
+        itemsData.forEach((item) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.text;
+            listItem.dataset.url = item.url;
+
+            listItem.addEventListener('mouseover', () => {
+                tooltip.textContent = item.url;
+                tooltip.style.display = 'block';
+
+                tooltip.classList.add('fade-in');
+
+            });
+
+            listItem.addEventListener('mouseout', () => {
+                if (tooltip.classList.contains('fade-in')) {
+                    tooltip.classList.remove('fade-in');
+                }
+                tooltip.classList.add('fade-out');
+
+                tooltip.style.display = 'none';
+
+            });
+
+
+            // Set the URL as a tooltip for the list item
+            // listItem.title = item.url;
+
+            listContainer.appendChild(listItem);
+        });
+      
+        listContainer.addEventListener('click', (event) => {
+          const target = event.target;
+          if (target.tagName === 'LI') {
+            const linkURL = target.dataset.url;
+            if (linkURL) {
+              window.open(linkURL, '_blank');
+            }
+          }
+        });
+    </script>
+      
+
+</body>
+</html>
